@@ -4,11 +4,15 @@
 
 ## Instalación
 
-1. Instalar Scoop el cual es un package maneger para Windows.
+1. Instalar [Scoop](https://scoop.sh/) el cual es un package maneger para Windows.
 
    1. Abrir Windows PowerShell en modo administrador, copiar y pegar comando y después ejecutar.
 
-2. En Chololatey dar clic en `Find Packages` y buscar `neovim`
+      ```
+      scoop --version
+      ```
+
+2. En Scoop dar clic en `Find Packages` y buscar `neovim`
 
    1. A 15/02/2022 esta la versión Neovim 0.6.1, dar clic en ver el comando que hay que ejecutar
 
