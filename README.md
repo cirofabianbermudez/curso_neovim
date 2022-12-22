@@ -43,6 +43,9 @@
 ## Plantilla 
 
 ```
+""set path+=**
+""set wildmenu
+
 set number
 set mouse=a
 set numberwidth=1
@@ -53,23 +56,31 @@ set ruler
 set cursorline
 set encoding=utf-8
 set showmatch
-set sw=4
-set relativenumber
+"set sw=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
+"set relativenumber
 set laststatus=2
 set noshowmode
+
+" Extras
+"set smartindent
+"set smartcase
 
 call plug#begin('~/.vim/plugged')
 
 " Temas
 Plug 'morhetz/gruvbox'
-
 " IDE
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
+" Autocomplete
 call plug#end()
 
 colorscheme gruvbox 
+"set background=dark
 let g:gruvbox_contrast_dark = "hard"
 let NERDTreeQuitOnOpen=1
 
@@ -80,6 +91,19 @@ nmap <Leader>nt :NERDTreeFind<CR>
 
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
+
+" Comandos custom
+nmap <Leader>y :%y+<CR>
+nmap <Leader>yy :%d<CR>
+
+nmap <Leader>k :tabnext<CR>
+nmap <Leader>j :tabprevious<CR>
+nmap <Leader>h ^
+nmap <Leader>l $
+nmap <Leader>, a<
+nmap <Leader>. a>
+
+nnoremap ,<space> :nohlsearch<CR>
 ```
 
 
@@ -303,4 +327,89 @@ En el siguiente [link](https://vim.rtorr.com/) hay una buena cantidad de comando
 | `rmu -rf `         | Borrar recursivamente un directorio **CUSTOM** |
 | `mv`               | Mover un archivo o renombrar                   |
 | `cp`               | Copiar un archivo                              |
+
+
+
+
+
+Vim tutor review
+
+| Commands                 | Description                                                  |
+| ------------------------ | ------------------------------------------------------------ |
+| `k↑  j↓  h←  l→`         | Basic movement                                               |
+| `w`                      | Move to the next word forward, and place the cursor at the beginnig. |
+| `b`                      | Move to the previous word backward, and place the cursor at the beginnig. |
+| `e`                      | Move to the next word forward, and place the cursor at the end. |
+| `ge`                     | Move to the next word backward, and place the cursor at the end. |
+| `f<any-letter>`          | Move to the next `<any-letter>` in the line,                 |
+| `F<any-letter>`          | Move to the previous `<any-letter>` in the line,             |
+| `$`                      | Move to the end of the line.                                 |
+| `0`                      | Move to the star of the line.                                |
+| `<C-u>`                  | Move up 1/2 page                                             |
+| `<C-d>`                  | Move down 1/2 page                                           |
+| `u`                      | Undo the last command.                                       |
+| `U`                      | Fix a whole line.                                            |
+| `<C-r>`                  | Control + r redo                                             |
+| `<Esc>`                  | Normal mode                                                  |
+| `:q!`                    | Exit vim                                                     |
+| `:w`                     | Save current file                                            |
+| `:wq`                    | Save and quit                                                |
+| `x`                      | Delete character                                             |
+| `i`                      | Enter insert mode to the left of the current character       |
+| `I`                      | Enter insert mode at the first character in the current line. |
+| `a`                      | Enter insert mode to the right of the current character      |
+| `A`                      | Append. Enter insert mode at the end of the line.            |
+| `o`                      | Open a new line below the cursor and place you in Insert mode |
+| `O`                      | Open a new line above the cursor and place you in Insert mode |
+| `operator motion`        | Many commands that chande text are made from an operator and a motion |
+| `dw`                     | Delete the word until the start of the next word, the cursor has to be at the beginning of the word. |
+| `de`                     | Delete the word to the end of the current word.              |
+| `d$`   `D`               | Delete till the end of the line, including the cursor character. |
+| `number motion`          | Typing a number before a motion repeats it that many times.  |
+| `2w`                     | Move two words forward, place the cursor at the begininnig of the word |
+| `3e`                     | Move two words forward, place the cursor at the end of the word |
+| `operator number motion` | Combinations of operator number and motion                   |
+| `d2w`                    | Delete two word until the start of the next word.            |
+| `dd`                     | Delete current line and store it in a vim register           |
+| `2dd`                    | Delete two lines including the one where the cursor is at.   |
+| `p`                      | Put whatever the vim register have in the line below the cursor. Or to the right of the cursor if it is not a line |
+| `P`                      | Put whatever the vim register have in the line above the cursor. Or to the left of the cursor if it is not a line |
+| `r<any-letter>`          | Replace the character where the cursor ir with `<any-letter>` |
+| `ce`      `cw`           | Change until the end of a word including the current character, is a combination of delete andinsert mode. |
+| `c$`      `C`            | Change until the end of a word including the current line, including the current character. |
+| `<C-g>`                  | Show the location in a file and the file status.             |
+| `<any-number>G`          | Move to the `<any-number>` line                              |
+| `gg`                     | Move to the start of the file                                |
+| `G`                      | Move to the bottom of the file                               |
+| `/<some-phase>`          | Type `/` followed by a phrase to search for the phrase. To search for the same phrase again, simply type `n`. To search for the same phrase in the opposite direction, type `N`. |
+| `?<some-phase>`          | To search for a phrase in the backward direction, use `?`instead of `/` |
+| `<C-o>`                  | Go back where you came from after a search                   |
+| `<C-i>`                  | Go forward where you came from after a search                |
+| `%`                      | Type `%`  to find a matching ),], or }.                      |
+| `:s/old/new`             | Sustitute command, new for old, first mach                   |
+| `:s/old/new/g`           | Sustitute command, new for old, the flag `g` means globally in the line |
+| `:#,#s/old/new/g`        | To change every occurrence of a character string between two lines, where #,# are the line numbers of the range of lines where the substitution is to be done. |
+| `:%s/old/new/g`          | to change every occurrence in the whole file.                |
+| `:%s/old/new/gc`         | to find every occurrence in the whole file, with a prompt whether to substitute or not. |
+| `:!<command>`            | Execute external commands                                    |
+| `v`                      | Enter Visual selection                                       |
+| `:'<,>w TEST'`           | While in Visual selection press `:` and then `w TEST` saves the selection in a new file call TEST |
+| `:r FILE`                | Insert the content of a file                                 |
+| `:0r FILE`               | Insert the content of a file with no extra line              |
+| `:r !dir`                | Insert the output of the `dir` comman                        |
+| `R`                      | Enters replace mode                                          |
+| `y`                      | Yank command, the same as copy, it is used in combination with the visual mode and motion commands. |
+| `yw`                     | Yank a to the end of the word.                               |
+| `yiw`                    | Yank inside the current word.                                |
+| `:set ic`                | ignorecase in a search                                       |
+| `:set is`                | increment search to show partial matches                     |
+| `:set hls`               | highlight all matching phrases                               |
+| `:set invic`             | Invert the current configuration of ic                       |
+| `:set noic`              | Switch off the option                                        |
+| `:help` or `F1`          | To search for help                                           |
+| `<C-w><C-w>`             | Change between split windows                                 |
+| `:e<C-d>`                | Shows a list of command beginnig with e                      |
+| `<C-w>s`  `:sp filenam`  | Split horizontally                                           |
+| `<C-w>v`  `:vsp filenam` | Split vertically                                             |
+|                          |                                                              |
 
