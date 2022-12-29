@@ -20,6 +20,7 @@
 
       ```
       scoop install neovim
+      scoop update neovim
       ```
 
 3. Instalar el manejador de plugins `vim-plug`
@@ -104,6 +105,47 @@ nmap <Leader>, a<
 nmap <Leader>. a>
 
 nnoremap ,<space> :nohlsearch<CR>
+```
+
+
+
+|                      |                                                 |
+| -------------------- | ----------------------------------------------- |
+| `set number`         | Números de linea                                |
+| `set mouse=a`        | Interactuar con el mouse                        |
+| `syntax eneable`     | Sintaxis                                        |
+| `set showcmd`        |                                                 |
+| `set encoding=utf-8` | Codificación                                    |
+| `set showmatch`      | Mostrar resaltado par de corchetes o parentesis |
+| `set relativenumber` | Números relativos para moverse más rápído.      |
+| ``                   |                                                 |
+| ``                   |                                                 |
+| ``                   |                                                 |
+
+
+
+
+
+```
+set number
+set mouse=a
+syntax eneable
+set showcmd
+set encoding=utf-8
+set showmatch
+
+call plug#begin('~/.vim/plugged')
+" Temas
+Plug 'sainnhe/gruvbox-material'
+
+call plug#end()
+
+
+" GRUVBOX configuration
+set background=dark
+let g:gruvbox_material_background="medium"
+colorscheme gruvbox-material
+
 ```
 
 
